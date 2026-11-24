@@ -2,7 +2,7 @@
 
 All notable changes to the runofsho MCP server. The server is hosted; versions here match `serverInfo.version` and `server.json`.
 
-## 1.0.0 (unreleased)
+## 1.0.0 (2026-11-24)
 
 First release.
 
