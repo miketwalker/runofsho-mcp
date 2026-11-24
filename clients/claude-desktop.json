@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "runofsho": {
+      "command": "npx",
+      "args": [
+        "-y", "mcp-remote", "https://api.runofsho.com/mcp",
+        "--header", "Authorization:${RUNOFSHO_AUTH}"
+      ],
+      "env": { "RUNOFSHO_AUTH": "Bearer rd_live_your_key" }
+    }
+  }
+}

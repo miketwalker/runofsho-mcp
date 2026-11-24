@@ -1,0 +1,80 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.miketwalker/runofsho",
+  "title": "runofsho",
+  "description": "Lets Claude, ChatGPT, Cursor and other AI assistants build, edit and check run of show rundowns.",
+  "version": "1.0.0",
+  "websiteUrl": "https://runofsho.com/mcp/",
+  "repository": {
+    "url": "https://github.com/miketwalker/runofsho-mcp",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://runofsho.com/assets/icon-192.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "192x192"
+      ]
+    },
+    {
+      "src": "https://runofsho.com/assets/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.runofsho.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer followed by your runofsho API key (API keys in the app menu). Scope read for the read tools, manage for the plan tools.",
+          "isRequired": true,
+          "isSecret": true,
+          "value": "Bearer {api_key}",
+          "variables": {
+            "api_key": {
+              "description": "runofsho API key, rd_live_…",
+              "isRequired": true,
+              "isSecret": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "description": "runofsho MCP server: a hosted MCP endpoint that lets Claude, ChatGPT, Cursor and other AI assistants build, edit and check run of show rundowns through the runofsho API.",
+      "documentationUrl": "https://runofsho.com/mcp/",
+      "tools": [
+        "list_events",
+        "get_rundown",
+        "get_room_status",
+        "get_timing_report",
+        "search_library",
+        "create_event",
+        "import_rundown",
+        "edit_rows",
+        "set_service_times",
+        "duplicate_rundown"
+      ],
+      "prompts": [
+        "build_rundown_from_doc",
+        "post_show_timing_report",
+        "prep_next_service",
+        "check_timing_gaps"
+      ],
+      "resources": [
+        "runofsho://docs",
+        "runofsho://schema",
+        "runofsho://style-guide"
+      ],
+      "liveControl": false
+    }
+  }
+}

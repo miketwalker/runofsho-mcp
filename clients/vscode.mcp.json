@@ -1,0 +1,17 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "runofsho-key",
+      "description": "runofsho API key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "runofsho": {
+      "type": "http",
+      "url": "https://api.runofsho.com/mcp",
+      "headers": { "Authorization": "Bearer ${input:runofsho-key}" }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "runofsho": {
+      "serverUrl": "https://api.runofsho.com/mcp",
+      "headers": { "Authorization": "Bearer rd_live_your_key" }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# ~/.codex/config.toml (read by the ChatGPT desktop app and Codex)
+# Set RUNOFSHO_API_KEY=rd_live_your_key in the environment the app starts from.
+[mcp_servers.runofsho]
+url = "https://api.runofsho.com/mcp"
+bearer_token_env_var = "RUNOFSHO_API_KEY"
