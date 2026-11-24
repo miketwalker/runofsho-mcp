@@ -2,6 +2,8 @@ runofsho MCP server: a hosted MCP endpoint that lets Claude, ChatGPT, Cursor and
 
 <p><img src="assets/runofsho-logo.svg" alt="runofsho" height="40"></p>
 
+[![runofsho MCP connector](https://glama.ai/mcp/connectors/io.github.miketwalker/runofsho/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.miketwalker/runofsho)
+
 **Endpoint:** `https://api.runofsho.com/mcp` (Streamable HTTP) · **Docs and setup:** [runofsho.com/mcp](https://runofsho.com/mcp/?utm_source=github&utm_medium=repo&utm_campaign=mcp) · **Version:** 1.1.0
 
 This repository is the public documentation for the runofsho MCP server: client config files, example rundowns, a prompt library and the `server.json` for MCP directories. The server is hosted by runofsho; there is nothing here to install or run, and the application source is private.
