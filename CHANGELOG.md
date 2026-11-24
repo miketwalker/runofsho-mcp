@@ -2,7 +2,13 @@
 
 All notable changes to the runofsho MCP server. The server is hosted; versions here match `serverInfo.version` and `server.json`.
 
-## 1.0.0 (unreleased)
+## Unreleased
+
+- Sign-in with a runofsho account (OAuth 2.1 with PKCE, dynamic client registration, protected resource metadata), so claude.ai and ChatGPT on the web can connect. The consent page picks one team; scopes are `read` and `edit`, with no playback scope. API keys keep working.
+- A request without a credential now gets `401` with a `WWW-Authenticate` header that points to the sign-in metadata. `initialize` and `tools/list` used to answer without a key; MCP directories can read `server.json` or the [server card](https://runofsho.com/.well-known/mcp/server-card.json) instead.
+- `server.json`: the `Authorization` header is optional.
+
+## 1.0.0
 
 First release.
 
@@ -12,7 +18,3 @@ First release.
 - Prompts: `build_rundown_from_doc`, `post_show_timing_report`, `prep_next_service`, `check_timing_gaps`.
 - Resources: `runofsho://docs`, `runofsho://schema`, `runofsho://style-guide`.
 - No live playback control.
-
-### Planned
-
-- Sign-in with a runofsho account (OAuth 2.1 with PKCE), so claude.ai and ChatGPT on the web can connect.

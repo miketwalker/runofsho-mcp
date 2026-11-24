@@ -32,8 +32,8 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer followed by your runofsho API key (API keys in the app menu). Scope read for the read tools, manage for the plan tools.",
-          "isRequired": true,
+          "description": "Optional. Bearer followed by your runofsho API key (API keys in the app menu); scope read for the read tools, manage for the plan tools. Leave it out to sign in with OAuth instead.",
+          "isRequired": false,
           "isSecret": true,
           "value": "Bearer {api_key}",
           "variables": {

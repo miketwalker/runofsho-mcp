@@ -7,7 +7,7 @@ This page is for AI agents and assistants. runofsho MCP server: a hosted MCP end
 - Server name: `runofsho` (registry name `io.github.miketwalker/runofsho`), version 1.0.0
 - Endpoint: `https://api.runofsho.com/mcp`, Streamable HTTP. `POST` carries JSON-RPC 2.0; `GET` returns a short plain-text banner. Stateless: no session id, any request can go to any node.
 - Protocol versions: 2025-11-25, 2025-06-18, 2025-03-26 and 2024-11-05 (the server answers with the version the client asks for when it supports it, otherwise the newest).
-- Auth: `Authorization: Bearer rd_live_…` (or `rd_test_…`). The raw key in `Authorization` or an `X-API-Key` header also works. Output, guest and sign-in tokens are refused. OAuth is not available yet.
+- Auth: `Authorization: Bearer rd_live_…` (or `rd_test_…`). The raw key in `Authorization` or an `X-API-Key` header also works. Or OAuth 2.1: without a credential the server answers `401` with `WWW-Authenticate: Bearer resource_metadata="https://api.runofsho.com/.well-known/oauth-protected-resource/mcp"`; follow it to the authorization server, register dynamically, and request scopes `read` or `read edit`. A sign-in with only `read` sees the read tools only. Output and guest tokens, and runofsho app session tokens, are refused.
 - Server card: `https://api.runofsho.com/.well-known/mcp/server-card.json`
 - Human docs: [runofsho.com/mcp](https://runofsho.com/mcp/?utm_source=github&utm_medium=repo&utm_campaign=mcp)
 

@@ -10,6 +10,17 @@ If you are an AI agent working out how to call the server, read [AGENTS.md](AGEN
 
 ## Quick connect
 
+### claude.ai and ChatGPT on the web: sign in
+
+Add `https://api.runofsho.com/mcp` as a connector and sign in with your runofsho account. No API key needed.
+
+- **claude.ai and the Claude apps:** open the connectors directory, choose **Add**, then **Add custom connector**, enter the name `runofsho` and the URL, then **Continue**. If Claude asks which OAuth client to use, choose **Register automatically**. Choose **Add**, then **Connect**. On Team and Enterprise plans an owner adds it under **Organization settings → Connectors** first.
+- **ChatGPT on the web:** open **Plugins**, choose **+**, then **Add custom MCP server**, enter the URL and choose **OAuth** as the authentication, then **Create as a plugin**, install it and **Connect**. There is no client ID or secret to enter.
+
+A runofsho page opens: sign in, pick the one team the assistant may use, and tick **Also plan and edit rundowns** if it should be able to change things (Owner and Producer roles only); otherwise it can only read. Its changes show in the rundown history as, for example, "Claude via MCP (Dana)". Disconnect it at any time under **Account → Connected assistants** in runofsho; it loses access within 15 minutes.
+
+### Desktop and coding clients: an API key
+
 1. In [runofsho](https://app.runofsho.com/), open **API keys** in the app menu and create a key. Scope `read` lets the assistant look; `manage` lets it create and edit rundowns. Name it after the assistant ("Claude", "Cursor"): every change it makes is in the rundown history under that name.
 2. Add the server to your client with the key as `Authorization: Bearer rd_live_…`:
 
@@ -33,7 +44,9 @@ claude mcp add --transport http runofsho https://api.runofsho.com/mcp \
 
 Ready-made files for Claude Desktop, Claude Code, the ChatGPT desktop app and Codex, Cursor, VS Code and Windsurf are in [`clients/`](clients/). Step-by-step instructions: [runofsho.com/mcp](https://runofsho.com/mcp/?utm_source=github&utm_medium=repo&utm_campaign=mcp#connect-your-assistant).
 
-**Sign-in (OAuth) is not available yet.** claude.ai and ChatGPT on the web only connect custom MCP servers by sign-in or with no authentication, so they connect once runofsho sign-in ships. Use a desktop or coding client until then; Claude organizations with the Request headers beta for custom connectors can add an `authorization` header instead.
+### How sign-in works
+
+For client developers: a request without a credential gets `401` with `WWW-Authenticate: Bearer resource_metadata="https://api.runofsho.com/.well-known/oauth-protected-resource/mcp"`. That protected resource metadata (RFC 9728) points to the authorization server `https://runofsho.com` ([metadata](https://runofsho.com/.well-known/oauth-authorization-server), RFC 8414), which supports dynamic client registration (RFC 7591), the authorization code grant with PKCE S256, the `resource` parameter (RFC 8707) and refresh token rotation. Scopes are `read` and `edit`; there is no scope for playback. Client ID Metadata Documents are not supported yet, so clients register dynamically.
 
 ## Tools
 
@@ -80,9 +93,9 @@ This is the server's real output for that email, trimmed to fit. More starting p
 
 ## Limits and plans
 
-- The API, and so the MCP server, is on every runofsho plan, including Free. Tool calls count against the API key's per-minute budget: 60 requests on Free, 600 on Pro and Studio, 3,000 with API Plus. They never use the separate budget for playback commands. See [pricing](https://runofsho.com/pricing/?utm_source=github&utm_medium=repo&utm_campaign=mcp).
+- The API, and so the MCP server, is on every runofsho plan, including Free. Tool calls count against the API key's (or the sign-in connection's) per-minute budget: 60 requests on Free, 600 on Pro and Studio, 3,000 with API Plus. They never use the separate budget for playback commands. See [pricing](https://runofsho.com/pricing/?utm_source=github&utm_medium=repo&utm_campaign=mcp).
 - Plan limits apply as in the app: Free rundowns hold 10 rows, spreadsheet import (`import_rundown` with `content`) needs Pro or higher, and timing reports need Studio. Errors say which plan is needed and link to pricing.
-- The server is stateless and keeps no copy of your data. The assistant sees only what its key can see; revoke the key at any time.
+- The server is stateless and keeps no copy of your data. The assistant sees only what its key or sign-in allows; revoke the key or disconnect the assistant at any time.
 
 ## Learn more
 

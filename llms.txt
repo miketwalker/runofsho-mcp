@@ -3,7 +3,7 @@
 > runofsho MCP server: a hosted MCP endpoint that lets Claude, ChatGPT, Cursor and other AI assistants build, edit and check run of show rundowns through the runofsho API.
 
 - Endpoint: https://api.runofsho.com/mcp (Streamable HTTP, JSON-RPC 2.0). Hosted; nothing to install.
-- Auth: a runofsho API key as "Authorization: Bearer rd_live_…". OAuth sign-in is not available yet, so claude.ai and ChatGPT on the web cannot connect yet; Claude Desktop (via mcp-remote), Claude Code, the ChatGPT desktop app and Codex, Cursor, VS Code and Windsurf can.
+- Auth: sign in with a runofsho account (OAuth 2.1; claude.ai and ChatGPT on the web add the URL as a connector), or a runofsho API key as "Authorization: Bearer rd_live_…" (Claude Desktop via mcp-remote, Claude Code, the ChatGPT desktop app and Codex, Cursor, VS Code, Windsurf). Sign-in covers one team with scope read, or read and edit; there is no playback scope.
 - Read and plan tools only; no live playback control in v1.
 - Tools: list_events, get_rundown, get_room_status, get_timing_report, search_library (read); create_event, import_rundown, edit_rows, set_service_times, duplicate_rundown (plan, with preview then confirm).
 - Prompts: build_rundown_from_doc, post_show_timing_report, prep_next_service, check_timing_gaps. Resources: runofsho://docs, runofsho://schema, runofsho://style-guide.
