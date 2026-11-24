@@ -2,7 +2,7 @@ runofsho MCP server: a hosted MCP endpoint that lets Claude, ChatGPT, Cursor and
 
 <p><img src="assets/runofsho-logo.svg" alt="runofsho" height="40"></p>
 
-**Endpoint:** `https://api.runofsho.com/mcp` (Streamable HTTP) · **Docs and setup:** [runofsho.com/mcp](https://runofsho.com/mcp/?utm_source=github&utm_medium=repo&utm_campaign=mcp) · **Version:** 1.0.0
+**Endpoint:** `https://api.runofsho.com/mcp` (Streamable HTTP) · **Docs and setup:** [runofsho.com/mcp](https://runofsho.com/mcp/?utm_source=github&utm_medium=repo&utm_campaign=mcp) · **Version:** 1.1.0
 
 This repository is the public documentation for the runofsho MCP server: client config files, example rundowns, a prompt library and the `server.json` for MCP directories. The server is hosted by runofsho; there is nothing here to install or run, and the application source is private.
 
@@ -17,7 +17,7 @@ Add `https://api.runofsho.com/mcp` as a connector and sign in with your runofsho
 - **claude.ai and the Claude apps:** open the connectors directory, choose **Add**, then **Add custom connector**, enter the name `runofsho` and the URL, then **Continue**. If Claude asks which OAuth client to use, choose **Register automatically**. Choose **Add**, then **Connect**. On Team and Enterprise plans an owner adds it under **Organization settings → Connectors** first.
 - **ChatGPT on the web:** open **Plugins**, choose **+**, then **Add custom MCP server**, enter the URL and choose **OAuth** as the authentication, then **Create as a plugin**, install it and **Connect**. There is no client ID or secret to enter.
 
-A runofsho page opens: sign in, pick the one team the assistant may use, and tick **Also plan and edit rundowns** if it should be able to change things (Owner and Producer roles only); otherwise it can only read. Its changes show in the rundown history as, for example, "Claude via MCP (Dana)". Disconnect it at any time under **Account → Connected assistants** in runofsho; it loses access within 15 minutes.
+A runofsho page opens: sign in, pick the one team the assistant may use, and tick **Also plan and edit rundowns** if it should be able to change things (Owner and Producer roles only); otherwise it can only read. Its changes show in the rundown history as, for example, "Claude via MCP (Dana)". Disconnect it at any time under **Account → Connected assistants** in runofsho; it loses access within 20 minutes.
 
 ### Desktop and coding clients: an API key
 
@@ -46,7 +46,7 @@ Ready-made files for Claude Desktop, Claude Code, the ChatGPT desktop app and Co
 
 ### How sign-in works
 
-For client developers: a request without a credential gets `401` with `WWW-Authenticate: Bearer resource_metadata="https://api.runofsho.com/.well-known/oauth-protected-resource/mcp"`. That protected resource metadata (RFC 9728) points to the authorization server `https://runofsho.com` ([metadata](https://runofsho.com/.well-known/oauth-authorization-server), RFC 8414), which supports dynamic client registration (RFC 7591), the authorization code grant with PKCE S256, the `resource` parameter (RFC 8707) and refresh token rotation. Scopes are `read` and `edit`; there is no scope for playback. Client ID Metadata Documents are not supported yet, so clients register dynamically.
+For client developers: a request without a credential gets `401` with `WWW-Authenticate: Bearer resource_metadata="https://api.runofsho.com/.well-known/oauth-protected-resource/mcp"`. That protected resource metadata (RFC 9728) points to the authorization server `https://runofsho.com` ([metadata](https://runofsho.com/.well-known/oauth-authorization-server), RFC 8414), which supports dynamic client registration (RFC 7591), the authorization code grant with PKCE S256, the `resource` parameter (RFC 8707) and refresh token rotation. Scopes are `read` and `edit`; there is no scope for playback. Client ID Metadata Documents are not supported yet, so clients register dynamically. Every `/oauth/*` and `/.well-known/oauth-*` answer is `Cache-Control: no-store`, and token requests are rate limited per client and per connection, not per address.
 
 ## Tools
 

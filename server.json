@@ -3,7 +3,7 @@
   "name": "io.github.miketwalker/runofsho",
   "title": "runofsho",
   "description": "Lets Claude, ChatGPT, Cursor and other AI assistants build, edit and check run of show rundowns.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "websiteUrl": "https://runofsho.com/mcp/",
   "repository": {
     "url": "https://github.com/miketwalker/runofsho-mcp",
@@ -74,7 +74,30 @@
         "runofsho://schema",
         "runofsho://style-guide"
       ],
-      "liveControl": false
+      "liveControl": false,
+      "authentication": {
+        "schemes": [
+          "oauth2",
+          "bearer"
+        ],
+        "oauth": {
+          "protectedResourceMetadata": "https://api.runofsho.com/.well-known/oauth-protected-resource/mcp",
+          "authorizationServer": "https://runofsho.com",
+          "authorizationServerMetadata": "https://runofsho.com/.well-known/oauth-authorization-server",
+          "grantTypes": [
+            "authorization_code",
+            "refresh_token"
+          ],
+          "pkce": "S256",
+          "dynamicClientRegistration": true,
+          "clientIdMetadataDocuments": false,
+          "scopes": [
+            "read",
+            "edit"
+          ]
+        },
+        "bearer": "Authorization: Bearer rd_live_… (a runofsho API key)"
+      }
     }
   }
 }
