@@ -11,6 +11,6 @@ Copy the file for your assistant, replace `rd_live_your_key` with a runofsho API
 | VS Code | [`vscode.mcp.json`](vscode.mcp.json) | `.vscode/mcp.json` in your workspace. VS Code asks for the key and stores it securely. |
 | Windsurf | [`windsurf.mcp_config.json`](windsurf.mcp_config.json) | `~/.codeium/windsurf/mcp_config.json`. |
 
-**Not yet:** claude.ai on the web and ChatGPT on the web only offer sign-in (OAuth) or no authentication for custom MCP servers. runofsho sign-in for MCP is planned; until then use a desktop or coding client above. Claude organizations with the **Request headers** beta for custom connectors can add the URL with an `authorization` header instead.
+**claude.ai and ChatGPT on the web** need no file: add `https://api.runofsho.com/mcp` as a custom connector (claude.ai) or a custom MCP server with OAuth (ChatGPT) and sign in with your runofsho account. See [Quick connect](../README.md#quick-connect).
 
 Never commit a file with a real key in it. Use a `read`-scope key if the assistant only needs to look.
